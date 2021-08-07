@@ -1,0 +1,15 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    transition: all .5s;
+    padding : 30px ;
+}
+
+.font-size-big{
+    font-size : 2rem ;
+}
+
+button:disabled{
+    cursor: not-allowed;
+}
