@@ -1,3 +1,5 @@
+"use strict";
+
 let body = document.getElementById("body");
 
 // we can change the childrens color , or background-colors by targeting them using css only and this will spare us these lines: 
@@ -27,3 +29,6 @@ const goDark = ()=>{
         element.classList.add("btn-light")
     }) 
 }
+
+// Name : Mohamed Ahmed Ali haroon ;
+// grade : 3'd year computer science and artifical intelligance ;

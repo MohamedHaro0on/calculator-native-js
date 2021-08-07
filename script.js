@@ -8,18 +8,20 @@
 // it is a good user experience to delete the data after the user entered after submiting  for this i have used : form.reset();
 
 
+"use strict";
 
-let firstNumber, secondNumber;
 
-let result = document.getElementById("result"),
+let firstNumber, 
+    secondNumber ,
+    result = document.getElementById("result"),
     form = document.getElementsByTagName("form")[0],
     buttons = document.querySelectorAll("form button"),
-    Inps = document.querySelectorAll("input"),
+    inputs = document.querySelectorAll("input"),
     firstNumberErrorMsg = document.getElementById("firstNumberErrorMsg"),
     secondNumberErrorMsg = document.getElementById("secondNumberErrorMsg");
 
 
-const displayingErrorState = (element) => {
+const displayingError = (element) => {
     element.classList.add("is-invalid");
     element.scrollIntoView(); // to scroll to the unvalid input ;
     // disabling  buttons :
@@ -31,23 +33,25 @@ const displayingErrorState = (element) => {
 }
 
 const getNumbers = () => {
-    firstNumber = parseInt(Inps[0].value);
-    secondNumber = parseInt(Inps[1].value);
+    firstNumber = parseInt(inputs[0].value);
+    secondNumber = parseInt(inputs[1].value);
     let isValid = true;
 
     // validating  Numbers ;
     if (isNaN(firstNumber)) {
-        displayingErrorState(Inps[0])
+        displayingError(inputs[0])
         firstNumberErrorMsg.innerHTML = "first number is invalid"
         isValid = false;
     }
     if (isNaN(secondNumber)) {
-        displayingErrorState(Inps[1])
+        displayingError(inputs[1])
         secondNumberErrorMsg.innerHTML = "second number is invalid"
         isValid = false;
     }
-    else {
-        Inps.forEach(element => {
+     if (!isNaN(firstNumber) && !isNaN(secondNumber)) {
+        secondNumberErrorMsg.innerHTML = ""
+        inputs.forEach(element => {
+            element.classList.remove("is-invalid")
             element.classList.add("is-valid");
         })
     }
@@ -78,8 +82,8 @@ const Multiply = () => {
 const Divid = () => {
     if (getNumbers()) {
         if (secondNumber === 0) {
-            secondNumberErrorMsg.innerHTML = "can't perform division because the second number is equal 0";
-            Inps[1].classList.add("is-invalid");
+            secondNumberErrorMsg.innerHTML = "can't perform division because the second number equals 0";
+            inputs[1].classList.add("is-invalid");
         }
         else {
             result.innerHTML = (firstNumber / secondNumber).toFixed(2)
@@ -92,7 +96,7 @@ const Divid = () => {
 
 // Ending Error State ;
 
-Inps.forEach((element) => {
+inputs.forEach((element) => {
     element.addEventListener("keydown", () => {
         element.classList.remove("is-invalid");
         if (buttons[0].disabled === true) { // to avoid unneeded repetation;
