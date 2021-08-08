@@ -99,9 +99,9 @@ const Divid = () => {
 inputs.forEach((element) => {
     element.addEventListener("keydown", () => {
         element.classList.remove("is-invalid");
+        secondNumberErrorMsg.innerHTML = ""
         if (buttons[0].disabled === true) { // to avoid unneeded repetation;
             firstNumberErrorMsg.innerHTML = ""
-            secondNumberErrorMsg.innerHTML = ""
             buttons.forEach((btn) => {
                 btn.disabled = false;
             })
